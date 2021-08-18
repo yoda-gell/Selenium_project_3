@@ -10,16 +10,20 @@ public class main {
 
     public static void main(String[] args) {
         Scanner scanner=new Scanner(System.in);
+        System.out.println("put your name:");
+        String yourName=scanner.next();
+        System.out.println("put your password:");
+        String yourPassword=scanner.next();
         System.setProperty("webdriver.chrome.driver","c:\\chromedriver.exe");
         ChromeDriver driver=new ChromeDriver();
         driver.get("https://www.aac.ac.il/");
         driver.manage().window().maximize();
-        WebElement elementprsonal=driver.findElement(By.cssSelector("a[href=\"https://portal.aac.ac.il\"]"));
-        elementprsonal.click();
-        WebElement username= driver.findElement(By.id("Ecom_User_ID"));
-        username.sendKeys("aitikhn1");
+        WebElement elementPrsonal=driver.findElement(By.cssSelector("a[href=\"https://portal.aac.ac.il\"]"));
+        elementPrsonal.click();
+        WebElement userName= driver.findElement(By.id("Ecom_User_ID"));
+        userName.sendKeys(yourName);
         WebElement password=driver.findElement(By.id("Ecom_Password"));
-        password.sendKeys("itay4210");
+        password.sendKeys(yourPassword);
         WebElement enter =driver.findElement(By.id("wp-submit"));
         enter.click();
         WebElement moodle=driver.findElement(By.cssSelector("a[href=\"https://moodle.aac.ac.il/login/index.php\"]"));
@@ -34,12 +38,14 @@ public class main {
             System.out.println(coure.getText());
 
         }
-        System.out.println("choose one");
+        driver.manage().window().minimize();
+        System.out.println("choose number of course:");
         int numcuorse= scanner.nextInt();
+        driver.manage().window().maximize();
         coures.get(numcuorse).click();
 
         try {
-            Thread.sleep(5000);
+            Thread.sleep(4000);
         }catch (InterruptedException e){
 
         }
